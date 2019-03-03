@@ -23,18 +23,19 @@ export class RandomApiService {
 
   getContactsList (): Observable<Contact[]> {
     // @ts-ignore
-    return this.http.get<any[]>(this.url)
+    return this.http.get<Contact[]>(this.url)
       .pipe(
         tap(_ => console.info('fetched contacts')),
         //map((res) => res = res.map((response: CustomResponse)=> new CustomResponse().deserialize(response))),
-        map((res) => res = res.results[0].map((contact: Contact) =>  new Contact().deserialize(contact))),
+        map(res => new CustomResponse().deserialize(res).results),
+        //map((res) => res = res.results[0].map((contact: Contact) =>  new Contact().deserialize(contact))),
         catchError(this.handleError('getContactsList', []))
       );
   }
 
   parse(a: any){
-    var g = new CustomResponse().deserialize(a)
-    var f = g
+    //var g = new CustomResponse().deserialize(a);
+    var f = a;
   }
 
 
