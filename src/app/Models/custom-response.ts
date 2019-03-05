@@ -15,12 +15,15 @@ export class CustomResponse implements Deserializable{
   }
 }
 
+
+// CustomResponseDetail: Modela los datos del API sobre un usuario detallado
 export  class CustomResponseDetail implements Deserializable{
   info: any;
   results: Contact;
   constructor(){}
   deserialize(input: any): this {
     Object.assign(this, input);
+    // Debido a que la estructura de lso resultados fue necesario o0tro modelo para el JSOn proveneinet del API
     this.results = new Contact().deserialize(input.results[0]);
     return this
   }

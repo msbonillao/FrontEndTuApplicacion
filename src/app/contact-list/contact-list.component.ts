@@ -9,7 +9,6 @@ import * as _ from 'lodash';
 })
 export class ContactListComponent implements OnInit {
   contacts: Contact[];
-  contact: Contact;
   contactsPerLetter: Array<{letter: string, contacts: Contact[]}>;
   constructor(private randomApiService: RandomApiService) { }
 
@@ -18,26 +17,21 @@ export class ContactListComponent implements OnInit {
   }
 
   refreshList() {
-
+    // Solicita al servicio los datos provenientes del API
     this.randomApiService.getContactsList()
       .subscribe(contacts => this.displayContacts(contacts));
-
-
   }
 
   private displayContacts(contactList: Contact[]) {
-
+    //Tratamiento de datos para presnetacion al usuario
+    // El arreglo se organiza alfabetícamente
     contactList.sort(function(a,b){
       return a.first.localeCompare(b.first);
     });
+    // Se agrupan en arreglos de acuerdo a la letra inicial de su nombre (Puede cambiar a cualquier cualidad)
     let groupedItems: Array<Contact[]> = _.groupBy(contactList, 'first[0]');
-    //this.contactsPerLetter = groupedItems;
+    // Se convierte en un iterable para que los binding en la plantilla (*ngFor) operen sin problemas
     this.contactsPerLetter= Object.keys(groupedItems).map((key)=>{ return {letter:key, contacts:groupedItems[key]}});
     this.contacts = contactList;
-
-
-
-
-
   }
 }

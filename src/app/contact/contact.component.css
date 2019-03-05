@@ -6,6 +6,7 @@
   margin: 0 auto;
   color: #1a2135;
 }
+
 @media (min-width: 2048px) {
   .container{position: absolute;
     top: 50%;
@@ -34,7 +35,6 @@
 
 .profile #pic{
   background-color: #ffa26a;
-
   float: left;
   width: 120px;
   padding: 0;
@@ -63,7 +63,6 @@
   width: 10%;
   background-color: inherit;
   margin-right: 15px;
-  /*height: 35px;*/
 }
 .data .card a {
   background-color: transparent;
@@ -105,15 +104,11 @@
   filter:blur(3px);
   opacity:.5;
   transform: scale(1);
-  /*box-shadow:none;*/
-
 }
 .data:hover .card:hover{
   transform:scale(1.05);
   filter:blur(0px);
   opacity:1;
-  /*box-shadow:0 8px 20px 0 rgba(0,0,0,0.125);*/
-
   background-color: #edeeff;
   animation-name: example;
   animation-duration: 0.25s;
