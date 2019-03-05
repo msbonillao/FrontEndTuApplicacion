@@ -23,8 +23,8 @@ export class ContactListComponent implements OnInit {
   }
 
   private displayContacts(contactList: Contact[]) {
-    //Tratamiento de datos para presnetacion al usuario
-    // El arreglo se organiza alfabetícamente
+    //Tratamiento de datos para presentación al usuario
+    // El arreglo se organiza alfabéticamente
     contactList.sort(function(a,b){
       return a.first.localeCompare(b.first);
     });
