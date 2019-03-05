@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {Contact} from './Models/contact'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import {isNullOrUndefined} from "util";
-import {CustomResponse} from "./Models/custom-response";
+import {catchError, map, tap} from 'rxjs/operators';
+import {CustomResponse, CustomResponseDetail} from "./Models/custom-response";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +14,7 @@ const httpOptions = {
 })
 export class RandomApiService {
   private url = 'https://randomapi.com/api/6de6abfedb24f889e0b5f675edc50deb';
-
+  private urldetail ='https://randomuser.me/api/';
 
   // URL to web api
   constructor(private http: HttpClient) { }
@@ -23,19 +22,22 @@ export class RandomApiService {
 
   getContactsList (): Observable<Contact[]> {
     // @ts-ignore
-    return this.http.get<Contact[]>(this.url)
+    return this.http.get<Contact[]>(this.url, httpOptions)
       .pipe(
-        tap(_ => console.info('fetched contacts')),
+        tap(() => console.info('fetched contacts')),
         //map((res) => res = res.map((response: CustomResponse)=> new CustomResponse().deserialize(response))),
         map(res => new CustomResponse().deserialize(res).results),
-        //map((res) => res = res.results[0].map((contact: Contact) =>  new Contact().deserialize(contact))),
-        catchError(this.handleError('getContactsList', []))
+        catchError(this.handleError([]))
       );
   }
 
-  parse(a: any){
-    //var g = new CustomResponse().deserialize(a);
-    var f = a;
+  getContactDetail(): Observable<Contact>{
+    return this.http.get<Contact>(this.urldetail, httpOptions).pipe(
+      tap(() => console.info('Detailed Contact Obtained')),
+      map(res => new CustomResponseDetail().deserialize(res).results),
+      catchError(this.handleError(new Contact()))
+    );
+
   }
 
 
@@ -47,7 +49,7 @@ export class RandomApiService {
 
 
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T> (result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
