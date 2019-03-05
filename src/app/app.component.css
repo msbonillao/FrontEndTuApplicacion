@@ -1,4 +1,51 @@
-app-contact-list {
-  align-content: center;
+.navigation * {
+  list-style-type: none;
+}
+.navigation {
+  position: relative;
+  max-width: 420px;
+  padding: 10px 0px 0px 0px;
+  overflow: hidden;
+  margin: 0 auto;
 
+}
+
+@media (min-width: 2048px) {
+  .navigation{position: absolute;
+    top: 50%;
+    left: 50%;
+  @include transform(translate(-50%, -50%));
+  }
+}
+.navigation ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn * {
+  background-color: inherit;
+
+}
+.btn {
+  float: left;
+  position: relative;
+  overflow: hidden;
+  background: #2e498e;
+  width:140px;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow:0 2px 3px 1px rgba(0.8,0.6,1,0.77);
+  color: #dcefff;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background-color: #809cd2;
+}
+
+.btn:active {
+  transform: scale(1.05);
+  background-color: #809cd2;
 }

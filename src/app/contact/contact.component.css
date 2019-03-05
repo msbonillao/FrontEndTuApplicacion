@@ -104,12 +104,12 @@
 .data:active .card{
   filter:blur(3px);
   opacity:.5;
-  transform: scale(.98);
+  transform: scale(1);
   /*box-shadow:none;*/
 
 }
 .data:hover .card:hover{
-  transform:scale(1);
+  transform:scale(1.05);
   filter:blur(0px);
   opacity:1;
   /*box-shadow:0 8px 20px 0 rgba(0,0,0,0.125);*/

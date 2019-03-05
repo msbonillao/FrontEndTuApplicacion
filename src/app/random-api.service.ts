@@ -16,16 +16,13 @@ export class RandomApiService {
   private url = 'https://randomapi.com/api/6de6abfedb24f889e0b5f675edc50deb';
   private urldetail ='https://randomuser.me/api/';
 
-  // URL to web api
   constructor(private http: HttpClient) { }
 
 
   getContactsList (): Observable<Contact[]> {
-    // @ts-ignore
     return this.http.get<Contact[]>(this.url, httpOptions)
       .pipe(
         tap(() => console.info('fetched contacts')),
-        //map((res) => res = res.map((response: CustomResponse)=> new CustomResponse().deserialize(response))),
         map(res => new CustomResponse().deserialize(res).results),
         catchError(this.handleError([]))
       );
@@ -40,15 +37,6 @@ export class RandomApiService {
 
   }
 
-
-
-  // getUser(): Observable<User[]> {
-  //   return this.http.get('/api/user')
-  //     .map((res: Response) => res.json().response.map((user: User) => new User().deserialize(user)));
-  // }
-
-
-
   private handleError<T> (result?: T) {
     return (error: any): Observable<T> => {
 
@@ -58,5 +46,4 @@ export class RandomApiService {
       return of(result as T);
     };
   }
-
 }
