@@ -1,0 +1,29 @@
+<div class="container" *ngIf="contact">
+  <div class="profile card">
+    <img id="pic" [src]=contact.picture.large alt="Profile Picture">
+    <h1 class="name">{{contact.first}} {{contact.last}}</h1>
+  </div>
+  <div class="data">
+
+    <div class="card email">
+      <a href="mailto:{{contact.email}}">
+      <img src="https://image.flaticon.com/icons/svg/1034/1034299.svg" alt="Icono hecho por SmashIcons">
+      </a>
+      <p>{{contact.email}}</p>
+    </div>
+    <div class="card phone">
+
+      <img src="https://image.flaticon.com/icons/svg/1034/1034284.svg" alt="Icono hecho por SmashIcons">
+      <p id="phone-number">{{contact.phone}}</p>
+      <button class="call">Call</button>
+    </div>
+    <div class="card location">
+      <a href="https://www.google.com/maps/?q={{contact.location.coordinates.latitude}},{{contact.location.coordinates.longitude}}">
+      <img src="https://image.flaticon.com/icons/svg/660/660623.svg" alt="Icono hecho por SmashIcons" >
+      </a>
+      <p>{{contact.location.street}}</p>
+    </div>
+  </div>
+
+
+</div>

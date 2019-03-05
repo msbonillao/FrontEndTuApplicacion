@@ -1,0 +1,16 @@
+<ul class="list" *ngIf="contactsPerLetter">
+  <li *ngFor="let contactGroup of contactsPerLetter">
+    <a>{{contactGroup.letter}}</a>
+    <ul *ngIf="contactGroup" class="card">
+      <li *ngFor="let contactView of contactGroup.contacts" class="contact">
+        <img src="https://image.flaticon.com/icons/svg/149/149071.svg" alt="Icono hecho por SmashIcons">
+        <div class="info">
+        <h1>{{contactView.first}} {{contactView.last}}</h1>
+        <span>{{contactView.email}}</span>
+        </div>
+        <!--<hr>-->
+      </li>
+    </ul>
+  </li>
+</ul>
+
